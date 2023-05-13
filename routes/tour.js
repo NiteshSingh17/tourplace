@@ -2,13 +2,17 @@ const { Tour } = require('../schema/tour.schema');
 const { uploadMulter } = require('../storage/multerStorage');
 var tourRoute = require('express').Router();
 
-tourRoute.post('/', uploadMulter.single("cover"), async (req,res) => {
+tourRoute.post('/', uploadMulter.fields([{
+    name: 'images', maxCount: 100
+  }, {
+    name: 'cover_image', maxCount: 1
+  }]), async (req,res) => {
     const placesData = {
         slug: req.body.slug,
         place: req.body.place,
-        images: req.file?.path || null,
+        images: req.files?.images?.length > 0 ? req.files?.images.map( f => f.path ) : null,
         languages : req.body.languages,
-        cover_image:  req.body.code,
+        cover_image: req.files?.cover_image?.length > 0 ? req.files?.cover_image[0].path || null,
         duration: req.body.duration,
         sku:  req.body.sku,
         view:  req.body.view,

@@ -4,7 +4,7 @@ const TourSchema = new mongoose.Schema({
     slug: String,
     place: [{ type: Schema.Types.ObjectId, ref: 'place' }],
     price: Number, 
-    images: String,
+    images: [String],
     languages: [{ type: String, enum: ['english', 'vietnamese'] }],
     cover_image: String,
     duration: Number,
@@ -12,8 +12,8 @@ const TourSchema = new mongoose.Schema({
     name: String,
     content: String,
     description: String,
-    metadata : [{ title , description}],
-    itinerary: [{ title, content }] 
+    metadata : [{ title: String , description : String}],
+    itinerary: [{ title : String, content: String }] 
 });
 
 const Tour = mongoose.model('tour', TourSchema);

@@ -39,7 +39,7 @@ placesRoute.get('/:id',async (req,res) => {
 })
 
 
-placesRoute.patch('/',async (req,res) => {
+placesRoute.patch('/', uploadMulter.single("cover"), async (req,res) => {
     const placesData = {
         slug: req.body.slug,
         status: req.body.status,
