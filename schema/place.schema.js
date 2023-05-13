@@ -6,7 +6,7 @@ const Placeschema = new mongoose.Schema({
     type : {type: String, enum:['region', 'country', 'city', 'provide', 'province', 'district']},
     code: String,
     parent: String,
-    geo: { X: String, Y: String },
+    geo: { lat: String, lng: String },
     view: Number,
     name: String,
     desc: String,

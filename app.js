@@ -5,6 +5,7 @@ const mongodb = require('./database/mongodb');
 const { placesRoute } = require('./routes/places');
 var bodyParser = require('body-parser');
 const { tourRoute } = require('./routes/tour');
+const { importCities } = require('./uploadToDatabase/importPlaces');
 
 mongodb.connectDatabase();
 
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
 
 app.use('/place', placesRoute)
 app.use('/tour', tourRoute)
+app.get('/import/cities', importCities);
 
 
 app.listen(port, () => {
